@@ -1,0 +1,276 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1150 780" width="100%" height="100%" style="background-color: #0f172a; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+  <defs>
+    <style>
+      .entity-box { fill: #1e293b; stroke: #334155; stroke-width: 1.5px; rx: 8px; }
+      .header-box { fill: #334155; rx: 8px; }
+      .entity-title { fill: #f8fafc; font-weight: 700; font-size: 15px; letter-spacing: 0.5px; }
+      .attr-row-even { fill: #1e293b; }
+      .attr-row-odd { fill: #0f172a; }
+      .attr-type { fill: #38bdf8; font-size: 12px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+      .attr-name { fill: #e2e8f0; font-size: 12px; font-weight: 500; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+      .badge-pk { fill: #eab308; font-size: 10px; font-weight: 700; font-family: ui-monospace, monospace; }
+      .badge-fk { fill: #a855f7; font-size: 10px; font-weight: 700; font-family: ui-monospace, monospace; }
+      .badge-uk { fill: #ec4899; font-size: 10px; font-weight: 700; font-family: ui-monospace, monospace; }
+      .rel-line { stroke: #64748b; stroke-width: 2; fill: none; }
+      .rel-label { fill: #94a3b8; font-size: 11px; font-style: italic; text-anchor: middle; }
+      .rel-label-bg { fill: #0f172a; stroke: #334155; stroke-width: 1; rx: 4; }
+      .cardinality { fill: #cbd5e1; font-size: 12px; font-family: ui-monospace, monospace; font-weight: 600; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="575" y="35" text-anchor="middle" fill="#f8fafc" font-size="20" font-weight="700">Library Management System - Entity Relationship Diagram</text>
+
+  <!-- RELATIONSHIP PATHS -->
+  <!-- users ||--o| borrowers ("registers") -->
+  <path d="M 330 150 L 440 150" class="rel-line" />
+  <rect x="355" y="138" width="60" height="20" class="rel-label-bg" />
+  <text x="385" y="152" class="rel-label">registers</text>
+  <text x="335" y="145" class="cardinality">||</text>
+  <text x="420" y="145" class="cardinality">o|</text>
+
+  <!-- borrowers ||--o{ loans ("borrows") -->
+  <path d="M 720 150 L 830 150" class="rel-line" />
+  <rect x="747" y="138" width="56" height="20" class="rel-label-bg" />
+  <text x="775" y="152" class="rel-label">borrows</text>
+  <text x="725" y="145" class="cardinality">||</text>
+  <text x="810" y="145" class="cardinality">o{</text>
+
+  <!-- genres ||--o{ books ("categorizes") -->
+  <path d="M 330 520 L 440 520" class="rel-line" />
+  <rect x="350" y="508" width="70" height="20" class="rel-label-bg" />
+  <text x="385" y="522" class="rel-label">categorizes</text>
+  <text x="335" y="515" class="cardinality">||</text>
+  <text x="420" y="515" class="cardinality">o{</text>
+
+  <!-- authors }o--o{ books ("writes") -->
+  <path d="M 830 520 L 720 520" class="rel-line" />
+  <rect x="750" y="508" width="50" height="20" class="rel-label-bg" />
+  <text x="775" y="522" class="rel-label">writes</text>
+  <text x="815" y="515" class="cardinality">}o</text>
+  <text x="725" y="515" class="cardinality">o{</text>
+
+  <!-- books ||--o{ loans ("loaned_in") -->
+  <path d="M 580 410 L 580 320 L 970 320 L 970 290" class="rel-line" />
+  <rect x="740" y="308" width="70" height="20" class="rel-label-bg" />
+  <text x="775" y="322" class="rel-label">loaned_in</text>
+  <text x="585" y="395" class="cardinality">||</text>
+  <text x="975" y="310" class="cardinality">o{</text>
+
+  <!-- ENTITY: users -->
+  <g transform="translate(50, 70)">
+    <rect width="280" height="155" class="entity-box" />
+    <path d="M 0 0 h 280 v 35 h -280 Z" class="header-box" />
+    <text x="140" y="23" text-anchor="middle" class="entity-title">users</text>
+
+    <!-- attr: serial id PK -->
+    <rect x="1" y="35" width="278" height="30" class="attr-row-even" />
+    <text x="15" y="55" class="attr-type">serial</text>
+    <text x="90" y="55" class="attr-name">id</text>
+    <text x="245" y="55" class="badge-pk">PK</text>
+
+    <!-- attr: varchar email UK -->
+    <rect x="1" y="65" width="278" height="30" class="attr-row-odd" />
+    <text x="15" y="85" class="attr-type">varchar</text>
+    <text x="90" y="85" class="attr-name">email</text>
+    <text x="245" y="85" class="badge-uk">UK</text>
+
+    <!-- attr: varchar name -->
+    <rect x="1" y="95" width="278" height="30" class="attr-row-even" />
+    <text x="15" y="115" class="attr-type">varchar</text>
+    <text x="90" y="115" class="attr-name">name</text>
+
+    <!-- attr: timestamp created_at -->
+    <rect x="1" y="125" width="278" height="30" class="attr-row-odd" />
+    <text x="15" y="145" class="attr-type">timestamp</text>
+    <text x="90" y="145" class="attr-name">created_at</text>
+  </g>
+
+  <!-- ENTITY: borrowers -->
+  <g transform="translate(440, 70)">
+    <rect width="280" height="215" class="entity-box" />
+    <path d="M 0 0 h 280 v 35 h -280 Z" class="header-box" />
+    <text x="140" y="23" text-anchor="middle" class="entity-title">borrowers</text>
+
+    <!-- attr: serial id PK -->
+    <rect x="1" y="35" width="278" height="30" class="attr-row-even" />
+    <text x="15" y="55" class="attr-type">serial</text>
+    <text x="90" y="55" class="attr-name">id</text>
+    <text x="245" y="55" class="badge-pk">PK</text>
+
+    <!-- attr: integer user_id FK -->
+    <rect x="1" y="65" width="278" height="30" class="attr-row-odd" />
+    <text x="15" y="85" class="attr-type">integer</text>
+    <text x="90" y="85" class="attr-name">user_id</text>
+    <text x="245" y="85" class="badge-fk">FK</text>
+
+    <!-- attr: varchar membership_number UK -->
+    <rect x="1" y="95" width="278" height="30" class="attr-row-even" />
+    <text x="15" y="115" class="attr-type">varchar</text>
+    <text x="90" y="115" class="attr-name">membership_number</text>
+    <text x="245" y="115" class="badge-uk">UK</text>
+
+    <!-- attr: varchar phone -->
+    <rect x="1" y="125" width="278" height="30" class="attr-row-odd" />
+    <text x="15" y="145" class="attr-type">varchar</text>
+    <text x="90" y="145" class="attr-name">phone</text>
+
+    <!-- attr: varchar address -->
+    <rect x="1" y="155" width="278" height="30" class="attr-row-even" />
+    <text x="15" y="175" class="attr-type">varchar</text>
+    <text x="90" y="175" class="attr-name">address</text>
+
+    <!-- attr: timestamp created_at -->
+    <rect x="1" y="185" width="278" height="30" class="attr-row-odd" />
+    <text x="15" y="205" class="attr-type">timestamp</text>
+    <text x="90" y="205" class="attr-name">created_at</text>
+  </g>
+
+  <!-- ENTITY: loans -->
+  <g transform="translate(830, 70)">
+    <rect width="280" height="245" class="entity-box" />
+    <path d="M 0 0 h 280 v 35 h -280 Z" class="header-box" />
+    <text x="140" y="23" text-anchor="middle" class="entity-title">loans</text>
+
+    <!-- attr: serial id PK -->
+    <rect x="1" y="35" width="278" height="30" class="attr-row-even" />
+    <text x="15" y="55" class="attr-type">serial</text>
+    <text x="90" y="55" class="attr-name">id</text>
+    <text x="245" y="55" class="badge-pk">PK</text>
+
+    <!-- attr: integer book_id FK -->
+    <rect x="1" y="65" width="278" height="30" class="attr-row-odd" />
+    <text x="15" y="85" class="attr-type">integer</text>
+    <text x="90" y="85" class="attr-name">book_id</text>
+    <text x="245" y="85" class="badge-fk">FK</text>
+
+    <!-- attr: integer borrower_id FK -->
+    <rect x="1" y="95" width="278" height="30" class="attr-row-even" />
+    <text x="15" y="115" class="attr-type">integer</text>
+    <text x="90" y="115" class="attr-name">borrower_id</text>
+    <text x="245" y="115" class="badge-fk">FK</text>
+
+    <!-- attr: timestamp loan_date -->
+    <rect x="1" y="125" width="278" height="30" class="attr-row-odd" />
+    <text x="15" y="145" class="attr-type">timestamp</text>
+    <text x="90" y="145" class="attr-name">loan_date</text>
+
+    <!-- attr: timestamp due_date -->
+    <rect x="1" y="155" width="278" height="30" class="attr-row-even" />
+    <text x="15" y="175" class="attr-type">timestamp</text>
+    <text x="90" y="175" class="attr-name">due_date</text>
+
+    <!-- attr: timestamp return_date -->
+    <rect x="1" y="185" width="278" height="30" class="attr-row-odd" />
+    <text x="15" y="205" class="attr-type">timestamp</text>
+    <text x="90" y="205" class="attr-name">return_date</text>
+
+    <!-- attr: varchar status -->
+    <rect x="1" y="215" width="278" height="30" class="attr-row-even" />
+    <text x="15" y="235" class="attr-type">varchar</text>
+    <text x="90" y="235" class="attr-name">status</text>
+  </g>
+
+  <!-- ENTITY: genres -->
+  <g transform="translate(50, 440)">
+    <rect width="280" height="125" class="entity-box" />
+    <path d="M 0 0 h 280 v 35 h -280 Z" class="header-box" />
+    <text x="140" y="23" text-anchor="middle" class="entity-title">genres</text>
+
+    <!-- attr: serial id PK -->
+    <rect x="1" y="35" width="278" height="30" class="attr-row-even" />
+    <text x="15" y="55" class="attr-type">serial</text>
+    <text x="90" y="55" class="attr-name">id</text>
+    <text x="245" y="55" class="badge-pk">PK</text>
+
+    <!-- attr: varchar name UK -->
+    <rect x="1" y="65" width="278" height="30" class="attr-row-odd" />
+    <text x="15" y="85" class="attr-type">varchar</text>
+    <text x="90" y="85" class="attr-name">name</text>
+    <text x="245" y="85" class="badge-uk">UK</text>
+
+    <!-- attr: text description -->
+    <rect x="1" y="95" width="278" height="30" class="attr-row-even" />
+    <text x="15" y="115" class="attr-type">text</text>
+    <text x="90" y="115" class="attr-name">description</text>
+  </g>
+
+  <!-- ENTITY: books -->
+  <g transform="translate(440, 410)">
+    <rect width="280" height="215" class="entity-box" />
+    <path d="M 0 0 h 280 v 35 h -280 Z" class="header-box" />
+    <text x="140" y="23" text-anchor="middle" class="entity-title">books</text>
+
+    <!-- attr: serial id PK -->
+    <rect x="1" y="35" width="278" height="30" class="attr-row-even" />
+    <text x="15" y="55" class="attr-type">serial</text>
+    <text x="90" y="55" class="attr-name">id</text>
+    <text x="245" y="55" class="badge-pk">PK</text>
+
+    <!-- attr: varchar title -->
+    <rect x="1" y="65" width="278" height="30" class="attr-row-odd" />
+    <text x="15" y="85" class="attr-type">varchar</text>
+    <text x="90" y="85" class="attr-name">title</text>
+
+    <!-- attr: varchar isbn UK -->
+    <rect x="1" y="95" width="278" height="30" class="attr-row-even" />
+    <text x="15" y="115" class="attr-type">varchar</text>
+    <text x="90" y="115" class="attr-name">isbn</text>
+    <text x="245" y="115" class="badge-uk">UK</text>
+
+    <!-- attr: integer publication_year -->
+    <rect x="1" y="125" width="278" height="30" class="attr-row-odd" />
+    <text x="15" y="145" class="attr-type">integer</text>
+    <text x="90" y="145" class="attr-name">publication_year</text>
+
+    <!-- attr: integer genre_id FK -->
+    <rect x="1" y="155" width="278" height="30" class="attr-row-even" />
+    <text x="15" y="175" class="attr-type">integer</text>
+    <text x="90" y="175" class="attr-name">genre_id</text>
+    <text x="245" y="175" class="badge-fk">FK</text>
+
+    <!-- attr: timestamp created_at -->
+    <rect x="1" y="185" width="278" height="30" class="attr-row-odd" />
+    <text x="15" y="205" class="attr-type">timestamp</text>
+    <text x="90" y="205" class="attr-name">created_at</text>
+  </g>
+
+  <!-- ENTITY: authors -->
+  <g transform="translate(830, 440)">
+    <rect width="280" height="155" class="entity-box" />
+    <path d="M 0 0 h 280 v 35 h -280 Z" class="header-box" />
+    <text x="140" y="23" text-anchor="middle" class="entity-title">authors</text>
+
+    <!-- attr: serial id PK -->
+    <rect x="1" y="35" width="278" height="30" class="attr-row-even" />
+    <text x="15" y="55" class="attr-type">serial</text>
+    <text x="90" y="55" class="attr-name">id</text>
+    <text x="245" y="55" class="badge-pk">PK</text>
+
+    <!-- attr: varchar name -->
+    <rect x="1" y="65" width="278" height="30" class="attr-row-odd" />
+    <text x="15" y="85" class="attr-type">varchar</text>
+    <text x="90" y="85" class="attr-name">name</text>
+
+    <!-- attr: text bio -->
+    <rect x="1" y="95" width="278" height="30" class="attr-row-even" />
+    <text x="15" y="115" class="attr-type">text</text>
+    <text x="90" y="115" class="attr-name">bio</text>
+
+    <!-- attr: date birth_date -->
+    <rect x="1" y="125" width="278" height="30" class="attr-row-odd" />
+    <text x="15" y="145" class="attr-type">date</text>
+    <text x="90" y="145" class="attr-name">birth_date</text>
+  </g>
+
+  <!-- Legend -->
+  <g transform="translate(380, 720)">
+    <rect x="0" y="0" width="390" height="35" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1" />
+    <text x="20" y="22" class="badge-pk">PK</text>
+    <text x="40" y="22" fill="#94a3b8" font-size="11">Primary Key</text>
+    <text x="130" y="22" class="badge-fk">FK</text>
+    <text x="150" y="22" fill="#94a3b8" font-size="11">Foreign Key</text>
+    <text x="240" y="22" class="badge-uk">UK</text>
+    <text x="260" y="22" fill="#94a3b8" font-size="11">Unique Constraint</text>
+  </g>
+</svg>

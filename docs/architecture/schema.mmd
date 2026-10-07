@@ -1,0 +1,54 @@
+erDiagram
+    users ||--o| borrowers : "registers"
+    borrowers ||--o{ loans : "borrows"
+    books ||--o{ loans : "loaned_in"
+    genres ||--o{ books : "categorizes"
+    authors }o--o{ books : "writes"
+
+    users {
+        serial id PK
+        varchar email UK
+        varchar name
+        timestamp created_at
+    }
+
+    borrowers {
+        serial id PK
+        integer user_id FK
+        varchar membership_number UK
+        varchar phone
+        varchar address
+        timestamp created_at
+    }
+
+    authors {
+        serial id PK
+        varchar name
+        text bio
+        date birth_date
+    }
+
+    genres {
+        serial id PK
+        varchar name UK
+        text description
+    }
+
+    books {
+        serial id PK
+        varchar title
+        varchar isbn UK
+        integer publication_year
+        integer genre_id FK
+        timestamp created_at
+    }
+
+    loans {
+        serial id PK
+        integer book_id FK
+        integer borrower_id FK
+        timestamp loan_date
+        timestamp due_date
+        timestamp return_date
+        varchar status
+    }
